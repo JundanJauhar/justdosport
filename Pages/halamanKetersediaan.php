@@ -33,17 +33,27 @@ include "../server/koneksi.php"
             </div>
         </div>
         <div class="grip ">
-        <div class="bg-gray-500 h-20 mb-10 flex items-center justify-center">
-    <input type="datetime-local"  name="" class="date-input p-2 border-none h-auto bg-gray-500 text-white focus:outline-none focus:border-none " id="datetime-input">
-</div>
+            <div class="bg-gray-500 h-20 mb-10 flex items-center justify-center">
+                <input type="datetime-local" name=""
+                    class="date-input p-2 border-none h-auto bg-gray-500 text-white focus:outline-none focus:border-none "
+                    id="datetime-input">
+            </div>
 
             <div>
 
             </div>
         </div>
-        <?php include '../includes/pilihanLapangan.php' ?>
-        <?php include '../includes/pilihanLapangan.php' ?>
-        <?php include '../includes/pilihanLapangan.php' ?>
+        <div class="grid grid-cols-2 bg-white border-solid border-red-100 border-x-8">
+            <div>
+                <?php include '../includes/pilihanLapangan.php' ?>
+                
+            </div>
+            <div>
+                <?php include '../includes/waktuPemesanan.php' ?>
+
+            </div>
+        </div>
+
         <?php include '../includes/navbarBawah.php' ?><br>
 
     </div>
@@ -52,17 +62,18 @@ include "../server/koneksi.php"
 </body>
 
 <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const input = document.getElementById('datetime-input');
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
-            input.value = formattedDateTime;
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const input = document.getElementById('datetime-input');
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+        input.value = formattedDateTime;
+    });
+</script>
+
 </html>
