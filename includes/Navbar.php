@@ -40,7 +40,7 @@
 
 <body>
     <nav class="bg-none fixed w-full z-20 dark:border-gray-600" id='navbar'>
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div class=" flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="../assets/logo.png" class="h-10 w-10" alt="Logo" />
                 <span class="text-white self-center text-xl font-semibold whitespace-nowrap dark:text-white">Just do

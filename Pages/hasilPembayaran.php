@@ -10,11 +10,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class='bg-green-600'>
+<body class='bg-gradient-to-r from-green-500 to-gray-900'>
 
-<div class="absolute top-0">
+    <div class="absolute top-0 ">
         <?php include '../includes/Navbar.php'; ?>
-    </div>    <div class="m-20 mx-72">
+    </div>
+    <div class="m-20 mx-72 bg-white rounded-3xl p-5">
 
         <div class="grid grid-cols-2">
             <div>
@@ -87,7 +88,7 @@
                     <h3 class="flex font-bold"><img src="img\qris.png" class="w-16 h-15 mr-2" alt="">Qris</h3>
                 </div>
                 <div class=" flex justify-between">
-                    <h3>Total Transaksi  </h3>
+                    <h3>Total Transaksi </h3>
                     <h3>Rp70.000</h3>
                 </div>
                 <div class=" flex justify-between border-b-4 border-gray-500 border-solid pb-3">

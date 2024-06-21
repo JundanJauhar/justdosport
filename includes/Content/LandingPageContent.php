@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+
 </head>
 <style>
 * {
@@ -149,157 +151,54 @@
                 </div>
             </div>
         </div>
-    </section>
-    <section class="section3 bg-white pb-6">
-        <h1 class='text-4xl text-green-600 font-bold text-center p-4'>Rekomendasi Lapangan Futsal Untuk Mu</h1>
-        <div class="flex w-full">
-            <div class="grid grid-cols-3 mx-auto gap-6 p-4">
-
-                <div class="w-96  rounded-sm shadow-md p-4">
-                    <img src="../../../justdosport/assets/jakal7.jpeg" alt="" class='w-full h-80' id="imgCard-1">
-                    <h4 class='text-2xl font-semibold mt-2'>Jakal 7 Futsal </h4>
-                    <h4 class='text-lg font-semibold'>Rp. 90.000 / Jam </h4>
-                    <p>Jl. Kaliurang Km.7</p>
+            </section>
+        <section class="section3 bg-white pb-6">
+    <!-- card Lapangan Futsal-->
+    <?php
+    include '../server/koneksi.php';
+    $query = "SELECT * FROM lapangan;";
+    $sql = mysqli_query($koneksi, $query);
+    $no = 0;
+    ?>
+    <h1 class='text-4xl text-green-600 font-bold text-center p-4'>Rekomendasi Lapangan Futsal Untuk Mu</h1>
+    <div class="flex w-full">
+        <div class="grid grid-cols-3 mx-auto gap-6 p-4 ">
+            <?php while ($result = mysqli_fetch_assoc($sql)) : ?>
+                <a href="halamanKetersediaan.php?id=<?php echo $result['id']; ?>" class="w-96 rounded-sm shadow-md p-4 block bg-gradient-to-r from-green-500 to-gray-900    ">
+                    <img src="<?php echo $result['gambar']; ?>" alt="" class='w-full h-80' id="imgCard-1">
+                    <h4 class='text-2xl font-semibold mt-2'><?php echo $result['namaLapangan']; ?></h4>
+                    <h4 class='text-lg font-semibold'>Rp. <?php echo number_format($result['harga'], 0, ',', '.'); ?></h4>
+                    <p><?php echo $result['alamat']; ?></p>
                     <div class="grid grid-cols-3 mt-2 gap-2">
                         <div class="grid">
                             <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/lapangan.png" alt="" class=' w-6'>
-                                <span>3</span>
+                                <img src="../../../justdosport/assets/lapangan.png" alt="" class=' w-6 h-6'>
+                                <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[0]; ?></span>
                             </div>
-                            <p class='text-sm'>Lapangan </p>
                         </div>
                         <div class="grid">
                             <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/wc.png" alt="" class=' w-6'>
-
+                                <img src="../../../justdosport/assets/wc.png" alt="" class=' w-6 h-6'>
+                                <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[1]; ?></span>
                             </div>
-                            <p class='text-sm'>Kamar Mandi </p>
                         </div>
                         <div class="grid">
                             <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/musholla.png" alt="" class=' w-6'>
-
+                                <img src="../../../justdosport/assets/musholla.png" alt="" class=' w-6 h-6'>
+                                <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[2]; ?></span>
                             </div>
-                            <p>Musholla </p>
                         </div>
-
                     </div>
                     <div class="grid mt-2">
-                        <img src="../../../justdosport/assets/circum_parking-1.png" alt="" class='w-6'>
-                        <p class='text-sm'>Area Parkir</p>
+                        <img src="../../../justdosport/assets/circum_parking-1.png" alt="" class='w-6 h-6'>
+                        <p class='text-sm'><?php echo json_decode($result['fasilitas'])[3]; ?></p>
                     </div>
-                    <div class="flex items-center mt-2">
-                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 22 20">
-                            <path
-                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                        </svg>
-                        <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white">5.0</p>
-                        <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-                        <a href="#"
-                            class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">
-                            Sleman, Yogyakarta.</a>
-                    </div>
-
-                </div>
-                <div class="w-96  rounded-sm shadow-md p-4">
-                    <img src="../../../justdosport/assets/meteor.jpeg" alt="" class='w-full h-80'>
-                    <h4 class='text-2xl font-semibold mt-2'>Meteor Futsal </h4>
-                    <h4 class='text-lg font-semibold'>Rp. 120.000 / Jam </h4>
-                    <p>Jl. Kaliurang Km.12</p>
-                    <div class="grid grid-cols-3 mt-2 gap-2">
-                        <div class="grid">
-                            <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/lapangan.png" alt="" class=' w-6'>
-                                <span>3</span>
-                            </div>
-                            <p class='text-sm'>Lapangan </p>
-                        </div>
-                        <div class="grid">
-                            <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/wc.png" alt="" class=' w-6'>
-
-                            </div>
-                            <p class='text-sm'>Kamar Mandi </p>
-                        </div>
-                        <div class="grid">
-                            <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/musholla.png" alt="" class=' w-6'>
-
-                            </div>
-                            <p>Musholla </p>
-                        </div>
-
-                    </div>
-                    <div class="grid mt-2">
-                        <img src="../../../justdosport/assets/circum_parking-1.png" alt="" class='w-6'>
-                        <p class='text-sm'>Area Parkir</p>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 22 20">
-                            <path
-                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                        </svg>
-                        <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white">5.0</p>
-                        <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-                        <a href="#"
-                            class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">
-                            Sleman, Yogyakarta.</a>
-                    </div>
-
-                </div>
-                <div class="w-96  rounded-sm shadow-md p-4">
-                    <img src="../../../justdosport/assets/bardasono.jpeg" alt="" class='w-full h-80'>
-                    <h4 class='text-2xl font-semibold mt-2'>Bardosono Futsal </h4>
-                    <h4 class='text-lg font-semibold'>Rp. 100.000 / Jam </h4>
-                    <p>Jl. Prof. DR. Soepomo Sh</p>
-                    <div class="grid grid-cols-3 mt-2 gap-2">
-                        <div class="grid">
-                            <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/lapangan.png" alt="" class=' w-6'>
-                                <span>3</span>
-                            </div>
-                            <p class='text-sm'>Lapangan </p>
-                        </div>
-                        <div class="grid">
-                            <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/wc.png" alt="" class=' w-6'>
-
-                            </div>
-                            <p class='text-sm'>Kamar Mandi </p>
-                        </div>
-                        <div class="grid">
-                            <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/musholla.png" alt="" class=' w-6'>
-
-                            </div>
-                            <p>Musholla </p>
-                        </div>
-
-                    </div>
-                    <div class="grid mt-2">
-                        <img src="../../../justdosport/assets/circum_parking-1.png" alt="" class='w-6'>
-                        <p class='text-sm'>Area Parkir</p>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 22 20">
-                            <path
-                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                        </svg>
-                        <p class="ms-2 text-sm font-bold text-gray-900 dark:text-white">5.0</p>
-                        <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-                        <a href="#"
-                            class="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">
-                            Sleman, Yogyakarta.</a>
-                    </div>
-
-                </div>
-
-            </div>
+                    
+                </a>
+            <?php endwhile; ?>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="section4">
         <div class="grid grid-cols-2 mx-auto w-full">

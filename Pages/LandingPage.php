@@ -27,7 +27,7 @@ include '../server/koneksi.php';
     </style>
 </head>
 
-<body class='bg-green-600'>
+<body class='bg-gradient-to-r from-green-500 to-gray-900'>
 
     <!-- Navbar -->
 

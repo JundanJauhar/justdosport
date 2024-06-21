@@ -15,12 +15,12 @@ include '../server/koneksi.php';
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class=" bg-green-600">
+<body class=" bg-gradient-to-r from-green-500 to-gray-900 bg-[url('../assets/nendang-removebg-preview.png')]">
     
 <div class="absolute-0">
         <?php include '../includes/Navbar.php'; ?>
     </div>
-    <div class="'m-16 mx-32">
+    <div class="'m-16 mx-32 border-solid border-2 border-white p-10 mt-5 rounded-3xl bg-white">
 
         <div class=" grid   gap-5 items-center pt-[180px]">
             <div class="flex gap-5">
@@ -31,7 +31,7 @@ include '../server/koneksi.php';
                     <img src="..\assets\images (2).jpeg" class=" size-36 w-[300px] h-[155px] drop-shadow-md" alt="">
                 </div>
                 <div class=" ml-16">
-                    <h1 class="text-2xl font-serif">JAKAL KM 7 FUTSAL</h1>
+                    <h1 class="text-2xl font-serif ">JAKAL KM 7 FUTSAL</h1>
                     <h3 class=" font-thin">Sleman, Yogyakarta</h3>
                 </div>
 
