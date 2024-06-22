@@ -10,43 +10,38 @@
 
 </head>
 <style>
-* {
-    padding: 0,
-        margin: 0,
-}
+    .section2 {
+        background-image: url('../../../justdosport/assets/andre-luis-rocha-sGwAKSQzGdM-unsplash.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.section2 {
-    background-image: url('../../../justdosport/assets/andre-luis-rocha-sGwAKSQzGdM-unsplash.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .section2 input {
+        backdrop-filter: blur(5px);
+        background-color: rgba(255, 255, 255, 0.5);
+        padding: 10px;
+    }
 
-.section2 input {
-    backdrop-filter: blur(5px);
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 10px;
-}
+    .section4 {
+        background-image: url('../../../justdosport/assets/futsal.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.section4 {
-    background-image: url('../../../justdosport/assets/futsal.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.form {
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(4px);
-}
+    .form {
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(4px);
+    }
 </style>
 
 
@@ -67,9 +62,65 @@
                     memesan lapangan futsal melalui web</p>
                 <div class="flex float-start mt-4 px-12">
                     <button
-                        class='px-3 py-3 bg-white text-green-600 hover:bg-gray-300 transition duration-300 rounded-sm'>
+                        class='px-3 py-3 bg-white text-green-600 hover:bg-gray-300 transition duration-300 rounded-sm mr-2'>
                         Temukan Lapangan
                     </button>
+                    <button id="toggleChat"
+                        class='px-3 py-3 bg-white text-green-600 hover:bg-gray-300 transition duration-300 rounded-sm'>
+                        Tanya Kami
+                    </button>
+                    <div class="flex float-start mt-4 px-12">
+                        <!-- Tombol untuk membuka chatbot -->
+                        <div id="chatForm" style="display: none;" class="absolute bg-white rounded-md right-11 bottom-5 w-96 p-4">
+                            <div
+                                class="flex flex-col h-96 w-full border border-gray-300 rounded-md p-4 overflow-y-auto">
+                                <!-- PHP code to fetch messages from the backend -->
+                                <?php
+                                // Function to send POST request to Node.js backend
+                                function sendRequest($message)
+                                {
+                                    $url = 'http://localhost:3001/api/chatbot';
+                                    $data = array('message' => $message);
+
+                                    // Use curl to send POST request
+                                    $ch = curl_init($url);
+                                    curl_setopt($ch, CURLOPT_POST, 1);
+                                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                    $response = curl_exec($ch);
+                                    curl_close($ch);
+
+                                    return json_decode($response, true);
+                                }
+
+                                // Handle form submission
+                                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['message'])) {
+                                    $userMessage = $_POST['message'];
+                                    $botResponse = sendRequest($userMessage)['reply'];
+
+                                    // Display user message
+                                    echo '<div class="text-left">';
+                                    echo '<span class="font-bold">You:</span> ' . htmlspecialchars($userMessage);
+                                    echo '</div>';
+
+                                    // Display bot response
+                                    echo '<div class="text-left">';
+                                    echo '<span class="font-bold">Bot:</span> ' . htmlspecialchars($botResponse);
+                                    echo '</div>';
+                                }
+                                ?>
+                            </div>
+                            <!-- Form untuk mengirim pesan ke chatbot -->
+                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+                                class="flex space-x-2 mt-2">
+                                <input type="text" name="message" placeholder="Ketik pesan Anda..."
+                                    class="border border-gray-300 rounded-md p-2 w-full" required>
+                                <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-md">Kirim</button>
+                            </form>
+                        </div>
+                    </div>
+
+
                     <div class="ml-4 mt-3 h-full">
                         <span class="items-center justify-center  ">
                             <svg class="w-6 h-6 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
@@ -151,54 +202,56 @@
                 </div>
             </div>
         </div>
-            </section>
-        <section class="section3 bg-white pb-6">
-    <!-- card Lapangan Futsal-->
-    <?php
-    include '../server/koneksi.php';
-    $query = "SELECT * FROM lapangan;";
-    $sql = mysqli_query($koneksi, $query);
-    $no = 0;
-    ?>
-    <h1 class='text-4xl text-green-600 font-bold text-center p-4'>Rekomendasi Lapangan Futsal Untuk Mu</h1>
-    <div class="flex w-full">
-        <div class="grid grid-cols-3 mx-auto gap-6 p-4 ">
-            <?php while ($result = mysqli_fetch_assoc($sql)) : ?>
-                <a href="halamanKetersediaan.php?id=<?php echo $result['id']; ?>" class="w-96 rounded-sm shadow-md p-4 block bg-gradient-to-r from-green-500 to-gray-900    ">
-                    <img src="<?php echo $result['gambar']; ?>" alt="" class='w-full h-80' id="imgCard-1">
-                    <h4 class='text-2xl font-semibold mt-2'><?php echo $result['namaLapangan']; ?></h4>
-                    <h4 class='text-lg font-semibold'>Rp. <?php echo number_format($result['harga'], 0, ',', '.'); ?></h4>
-                    <p><?php echo $result['alamat']; ?></p>
-                    <div class="grid grid-cols-3 mt-2 gap-2">
-                        <div class="grid">
-                            <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/lapangan.png" alt="" class=' w-6 h-6'>
-                                <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[0]; ?></span>
+    </section>
+    <section class="section3 bg-white pb-6">
+        <!-- card Lapangan Futsal-->
+        <?php
+        include '../server/koneksi.php';
+        $query = "SELECT * FROM lapangan;";
+        $sql = mysqli_query($koneksi, $query);
+        $no = 0;
+        ?>
+        <h1 class='text-4xl text-green-600 font-bold text-center p-4'>Rekomendasi Lapangan Futsal Untuk Mu</h1>
+        <div class="flex w-full">
+            <div class="grid grid-cols-3 mx-auto gap-6 p-4 ">
+                <?php while ($result = mysqli_fetch_assoc($sql)): ?>
+                    <a href="halamanKetersediaan.php?id=<?php echo $result['id']; ?>"
+                        class="w-96 rounded-sm shadow-md p-4 block bg-gradient-to-r from-green-500 to-gray-900    ">
+                        <img src="<?php echo $result['gambar']; ?>" alt="" class='w-full h-80' id="imgCard-1">
+                        <h4 class='text-2xl font-semibold mt-2'><?php echo $result['namaLapangan']; ?></h4>
+                        <h4 class='text-lg font-semibold'>Rp. <?php echo number_format($result['harga'], 0, ',', '.'); ?>
+                        </h4>
+                        <p><?php echo $result['alamat']; ?></p>
+                        <div class="grid grid-cols-3 mt-2 gap-2">
+                            <div class="grid">
+                                <div class="flex w-full gap-2">
+                                    <img src="../../../justdosport/assets/lapangan.png" alt="" class=' w-6 h-6'>
+                                    <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[0]; ?></span>
+                                </div>
+                            </div>
+                            <div class="grid">
+                                <div class="flex w-full gap-2">
+                                    <img src="../../../justdosport/assets/wc.png" alt="" class=' w-6 h-6'>
+                                    <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[1]; ?></span>
+                                </div>
+                            </div>
+                            <div class="grid">
+                                <div class="flex w-full gap-2">
+                                    <img src="../../../justdosport/assets/musholla.png" alt="" class=' w-6 h-6'>
+                                    <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[2]; ?></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="grid">
-                            <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/wc.png" alt="" class=' w-6 h-6'>
-                                <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[1]; ?></span>
-                            </div>
+                        <div class="grid mt-2">
+                            <img src="../../../justdosport/assets/circum_parking-1.png" alt="" class='w-6 h-6'>
+                            <p class='text-sm'><?php echo json_decode($result['fasilitas'])[3]; ?></p>
                         </div>
-                        <div class="grid">
-                            <div class="flex w-full gap-2">
-                                <img src="../../../justdosport/assets/musholla.png" alt="" class=' w-6 h-6'>
-                                <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[2]; ?></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid mt-2">
-                        <img src="../../../justdosport/assets/circum_parking-1.png" alt="" class='w-6 h-6'>
-                        <p class='text-sm'><?php echo json_decode($result['fasilitas'])[3]; ?></p>
-                    </div>
-                    
-                </a>
-            <?php endwhile; ?>
+
+                    </a>
+                <?php endwhile; ?>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section class="section4">
         <div class="grid grid-cols-2 mx-auto w-full">
@@ -238,28 +291,40 @@
 </body>
 
 <script>
-// Mengambil elemen card1, card
-const card1 = document.getElementById('card1');
-const card2 = document.getElementById('card2');
-const card3 = document.getElementById('card3');
 
-const imgCard1 =document.getElementById('imgCard-1')
+    document.getElementById('toggleChat').addEventListener('click', function () {
+        var chatForm = document.getElementById('chatForm');
+        if (chatForm.style.display === 'none' || chatForm.style.display === '') {
+            chatForm.style.display = 'block';
+            this.textContent = 'Tutup Chatbot';
+        } else {
+            chatForm.style.display = 'none';
+            this.textContent = 'Buka Chatbot';
+        }
+    });
 
-imgCard1.addEventListener('click', function() {
-    window.location.href = '../Pages/halamanKetersediaan.php'
-})
+    // Mengambil elemen card1, card
+    const card1 = document.getElementById('card1');
+    const card2 = document.getElementById('card2');
+    const card3 = document.getElementById('card3');
 
-imgCard1.addEventListener('mouseover', function() {
-    imgCard1.style.cursor = 'pointer';
-});
+    const imgCard1 = document.getElementById('imgCard-1')
 
-card1.style.backgroundImage = "url('../../../justdosport/assets/bg.png')";
-card2.style.backgroundImage = "url('../../../justdosport/assets/bg.png')";
-card3.style.backgroundImage = "url('../../../justdosport/assets/bg.png')";
+    imgCard1.addEventListener('click', function () {
+        window.location.href = '../Pages/halamanKetersediaan.php'
+    })
 
-card1.style.borderRadius = "8px";
-card2.style.borderRadius = "8px";
-card3.style.borderRadius = "8px";
+    imgCard1.addEventListener('mouseover', function () {
+        imgCard1.style.cursor = 'pointer';
+    });
+
+    card1.style.backgroundImage = "url('../../../justdosport/assets/bg.png')";
+    card2.style.backgroundImage = "url('../../../justdosport/assets/bg.png')";
+    card3.style.backgroundImage = "url('../../../justdosport/assets/bg.png')";
+
+    card1.style.borderRadius = "8px";
+    card2.style.borderRadius = "8px";
+    card3.style.borderRadius = "8px";
 </script>
 
 </html>
