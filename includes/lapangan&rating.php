@@ -89,15 +89,6 @@ if (isset($_GET['id'])) {
             z-index: 2;
         }
 
-        .info-box {
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 0.5rem;
-            padding: 20px;
-            color: black;
-            max-width: 600px;
-            margin: auto;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
 
         .carousel-nav {
             position: absolute;
@@ -147,8 +138,6 @@ if (isset($_GET['id'])) {
     <div class="carousel-container">
         <div class="carousel">
             <img src="<?php echo $row['gambar']; ?>" alt="Image 1">
-            <img src="https://via.placeholder.com/800x400.png?text=Image+2" alt="Image 2">
-            <img src="https://via.placeholder.com/800x400.png?text=Image+3" alt="Image 3">
         </div>
         <div class="carousel-nav">
             <button id="prevBtn">&lt;</button>
@@ -160,24 +149,27 @@ if (isset($_GET['id'])) {
             <button data-index="2"></button>
         </div>
     </div>
-   
-    <div class="carousel-content">
-        <div class="info-box mt-6">
+
+
+    <section>
+        <div class="p-4 mt-6 w-[100%]">
             <h1 class="text-3xl font-semibold text-gray-900"><?php echo $row['namaLapangan']; ?></h1>
             <h3 class="text-xl font-medium text-gray-700"><?php echo $row['alamat']; ?></h3>
-            <div class="border-solid border-gray-300 border-2 rounded-md p-5 mt-4">
+            <div class="border-solid border-gray-300 border-2 rounded-md p-5 mt-4 w-full">
                 <p>
                     <strong class="text-lg font-medium text-gray-800">Fasilitas:</strong>
-                    <ul class="list-disc list-inside mt-2">
-                        <li><?php echo $row['ketlapangan'] ?></li>
-                        
-                    </ul>
                 </p>
-                
+                <ul class="list-disc list-inside mt-2">
+                    <li class=" text-justify w-full"><?php echo $row['ketlapangan'] ?></li>
+                </ul>
             </div>
         </div>
-    </div>
-    <script>
+    </section>
+
+
+   
+</body>
+<script>
         const images = document.querySelectorAll('.carousel img');
         const indicators = document.querySelectorAll('.carousel-indicators button');
         let currentIndex = 0;
@@ -214,6 +206,5 @@ if (isset($_GET['id'])) {
 
         showImage(currentIndex);
     </script>
-</body>
 
 </html>

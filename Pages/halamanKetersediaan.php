@@ -27,24 +27,21 @@ include "../server/koneksi.php"
             <?php include '../includes/lapangan&rating.php' ?>
         </div>
 
-        <div class="flex justify-start  p-2 mb-3">
-            <div></div>
-            <div class="  flex gap-5 ">
+        <div class="flex  p-2 mb-3">
+            <div class="flex mx-auto gap-5 ">
                 <h1 class=" bg-white w-20 h-12 text-center pt-2 border-gray-300 border-2">Tersedia</h1>
                 <h1 class=" bg-green-600 w-20 h-12 text-center pt-2">Dipilih</h1>
                 <h1 class=" bg-orange-700 w-20 h-12 text-center">Tidak Tersedia</h1>
             </div>
         </div>
-        <div class="grip p-2 ">
-            <div class="bg-gray-500 h-20 mb-10 flex items-center justify-center w-96">
+        <div class="flex p-2 ">
+            <div class="bg-gray-500 h-20 mb-10 flex justify-center w-96 mx-auto">
                 <input type="datetime-local" name=""
                     class="date-input p-2 border-none h-auto bg-gray-500 text-white focus:outline-none focus:border-none "
                     id="datetime-input">
             </div>
 
-            <div>
-
-            </div>
+           
         </div>
 
             <div>
