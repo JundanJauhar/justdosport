@@ -1,3 +1,22 @@
+const btnWaktu = document.getElementById('btnWaktu');
+let btnBg = false;
+
+btnWaktu.addEventListener('click', () => {
+    if (!btnBg) {
+        btnWaktu.style.backgroundColor = 'green';
+        btnBg = true;
+    } else {
+        btnWaktu.style.backgroundColor = ''; // Set to default background color
+        btnBg = false;
+    }
+});
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', (event) => {
     const input = document.getElementById('date-input');
     const now = new Date();
@@ -6,6 +25,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const day = String(now.getDate()).padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
     input.value = formattedDate;
+    const btn = document.getElementById("btn")
+    btn.addEventListener(click, () => {
+        btn.style.backgroundColor = 'red'
+    })
 
     // Fetch available time slots for today
     fetchTimeSlots(formattedDate);

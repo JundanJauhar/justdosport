@@ -46,7 +46,7 @@ include "../server/koneksi.php";
     <?php include '../includes/footer.php' ?>
     </div>
 </body>
+<script src="../includes/waktuPemesanan.js"></script>
 
-<script src="./waktuPemesanan.js"></script>
 
 </html>
