@@ -1,3 +1,4 @@
+// Previous page (booking page)
 <?php
 include '../server/koneksi.php';
 

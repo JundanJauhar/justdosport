@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+include '../server/koneksi.php';
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_price'])) {
+    $selectedAmount = $_POST['selected_price'];
+    $_SESSION['selectedAmount'] = $selectedAmount;
+} else {
+    $selectedAmount = isset($_SESSION['selectedAmount']) ? $_SESSION['selectedAmount'] : 0;
+}
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +22,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class='bg-gradient-to-r from-green-500 to-gray-900'>
+<body class=" bg-gradient-to-r from-green-500 to-gray-900 bg-[url('../assets/nendang-removebg-preview.png')]">
 
-    <div class="absolute top-0 ">
+    <div class="absolute-0">
         <?php include '../includes/Navbar.php'; ?>
     </div>
     <div class="m-20 mx-72 bg-white rounded-3xl p-5">
@@ -89,7 +101,7 @@
                 </div>
                 <div class=" flex justify-between">
                     <h3>Total Transaksi </h3>
-                    <h3>Rp70.000</h3>
+                    <h3>Rp <?php echo number_format($selectedAmount, 0, ',', '.'); ?></h3>
                 </div>
                 <div class=" flex justify-between border-b-4 border-gray-500 border-solid pb-3">
                     <h3>Biaya pengananan</h3>
@@ -97,7 +109,7 @@
                 </div>
                 <div class=" flex justify-between">
                     <h3>Total Pembayaran</h3>
-                    <h3>Rp75.000</h3>
+                    <h3>Rp <?php echo number_format($selectedAmount + 5000, 0, ',', '.'); ?></h3>
                 </div>
             </div>
 
