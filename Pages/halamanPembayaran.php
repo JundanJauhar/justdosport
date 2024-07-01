@@ -3,8 +3,15 @@
 
 <?php
 include '../server/koneksi.php';
-?>
+session_start();
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_price'])) {
+    $selectedAmount = $_POST['selected_price'];
+    $_SESSION['selectedAmount'] = $selectedAmount;
+} else {
+    $selectedAmount = isset($_SESSION['selectedAmount']) ? $_SESSION['selectedAmount'] : 0;
+}
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -174,7 +181,7 @@ include '../server/koneksi.php';
                 <h3 class=" text-green-800">Minggu, 10 Maret 2024 ( 15.00 - 16.00 )</h3>
                 <div class=" justify-between flex py-5">
                     <h3>Harga Lapangan</h3>
-                    <h3>Rp120.000</h3>
+                    <div class="pt-2 pr-5 ext-[25px]">Rp <?php echo number_format($selectedAmount, 0, ',', '.'); ?></div>
                 </div>
                 <div class="garis border-solid border-t-2 flex justify-between py-5">
                     <h3>Service Fee</h3>
@@ -186,7 +193,7 @@ include '../server/koneksi.php';
                 </div>
                 <div class="total bayar justify-between flex py-5 text-red-600">
                     <h3>Bayar Penuh</h3>
-                    <h3>Rp125.000</h3>
+                    <h3>Rp <?php echo number_format($selectedAmount + 5000, 0, ',', '.'); ?></h3>
                 </div>
             </div>
             <div class="Selesaikan Pembayaran items-center text-center ">

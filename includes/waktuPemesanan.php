@@ -92,33 +92,31 @@ if (isset($_GET['id_tempatFutsal'])) {
                     </div>
 
                     <div class="md:w-1/2 justify-center">
-                        <div
-                            class="border-2 border-solid p-4 grid md:grid-cols-4 gap-5 w-full rounded-lg shadow-sm all-seats">
-                            <?php foreach ($lapangan['pemesanan'] as $pemesanan): ?>
-                                <button class="price-button" data-harga="<?php echo $pemesanan['harga']; ?>">
-                                    <div class="border-2 border-black border-solid text-center rounded-xl p-2 h-[50px]">
-                                        <h3 class="font-bold text-[12px] text-black"><?php echo $pemesanan["jam"]; ?></h3>
-                                        <h3 class="text-[10px] text-black opacity-75">Rp <?php echo $pemesanan["harga"]; ?>
-                                        </h3>
-                                    </div>
-                                </button>
-                            <?php endforeach; ?>
-                        </div>
+                        <form id="bookingForm" action="halamanPembayaran.php" method="POST">
+                            <input type="hidden" name="selected_price" id="selected_price" value="0">
+                            <div class="border-2 border-solid p-4 grid md:grid-cols-4 gap-5 w-full rounded-lg shadow-sm all-seats">
+                                <?php foreach ($lapangan['pemesanan'] as $pemesanan): ?>
+                                    <button type="button" class="price-button" data-harga="<?php echo $pemesanan['harga']; ?>">
+                                        <div class="border-2 border-black border-solid text-center rounded-xl p-2 h-[50px]">
+                                            <h3 class="font-bold text-[12px] text-black"><?php echo $pemesanan["jam"]; ?></h3>
+                                            <h3 class="text-[10px] text-black opacity-75">Rp <?php echo $pemesanan["harga"]; ?></h3>
+                                        </div>
+                                    </button>
+                                <?php endforeach; ?>
+                            </div>
+                        </form>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
     </div>
 
-    <!-- Element untuk menampilkan total harga -->
-
-
     <div class="h-[40px] mt-5 flex justify-center">
-        <div class="total-price-display pt-2 pr-5 text-[25px]">Rp 0</div> <!-- Ini akan diubah oleh JavaScript -->
+        <div class="total-price-display pt-2 pr-5 text-[25px]">Rp 0</div>
         <div class="bg-orange-600 w-[200px] h-10">
-            <a href="halamanPembayaran.php">
+            <button type="submit" form="bookingForm">
                 <h1 class="text-center pt-1 text-white text-[20px]">Checkout</h1>
-            </a>
+            </button>
         </div>
     </div>
 
@@ -144,10 +142,12 @@ if (isset($_GET['id_tempatFutsal'])) {
 
                 // Tampilkan total harga yang baru
                 totalPriceDisplay.textContent = 'Rp ' + totalPrice.toLocaleString();
+
+                // Set value of hidden input to selected price
+                document.getElementById('selected_price').value = totalPrice;
             });
         });
     </script>
 </body>
 
 </html>
-
