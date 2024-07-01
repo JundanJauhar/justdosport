@@ -111,12 +111,10 @@ if (isset($_GET['id_tempatFutsal'])) {
     </div>
 
     <!-- Element untuk menampilkan total harga -->
-    <div class="total-price-container">
-        <div class="pt-2 pr-5 text-[25px]">Rp 0</div>
-    </div>
+
 
     <div class="h-[40px] mt-5 flex justify-center">
-        <div class="pt-2 pr-5 text-[25px]">Rp 0</div> <!-- Ini akan diubah oleh JavaScript -->
+        <div class="total-price-display pt-2 pr-5 text-[25px]">Rp 0</div> <!-- Ini akan diubah oleh JavaScript -->
         <div class="bg-orange-600 w-[200px] h-10">
             <a href="halamanPembayaran.php">
                 <h1 class="text-center pt-1 text-white text-[20px]">Checkout</h1>
@@ -130,7 +128,7 @@ if (isset($_GET['id_tempatFutsal'])) {
         const priceButtons = document.querySelectorAll('.price-button');
 
         // Ambil elemen untuk menampilkan total harga
-        const totalPriceDisplay = document.querySelector('.total-price-container .text-[25px]');
+        const totalPriceDisplay = document.querySelector('.total-price-display');
 
         // Inisialisasi total harga
         let totalPrice = 0;
@@ -153,7 +151,3 @@ if (isset($_GET['id_tempatFutsal'])) {
 
 </html>
 
-<?php
-// Menutup koneksi
-mysqli_close($koneksi);
-?>
