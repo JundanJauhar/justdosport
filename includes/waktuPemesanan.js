@@ -1,15 +1,22 @@
-const btnWaktu = document.getElementById('btnWaktu');
-let btnBg = false;
+document.addEventListener('DOMContentLoaded', function() {
+    // Select all buttons with class btnWaktu
+    const waktuButtons = document.querySelectorAll('btnWaktu');
 
-btnWaktu.addEventListener('click', () => {
-    if (!btnBg) {
-        btnWaktu.style.backgroundColor = 'green';
-        btnBg = true;
-    } else {
-        btnWaktu.style.backgroundColor = ''; // Set to default background color
-        btnBg = false;
-    }
+    // Add click event listener to each button
+    waktuButtons.forEach(button => {
+        let btnBg = false;
+        button.addEventListener('click', () => {
+            if (!btnBg) {
+                button.classList.add('bg-green-600');
+                btnBg = true;
+            } else {
+                button.classList.remove('bg-green-600'); // Remove the green background class
+                btnBg = false;
+            }
+        });
+    });
 });
+
 
 
 

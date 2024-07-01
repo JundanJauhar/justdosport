@@ -41,7 +41,6 @@ include "../server/koneksi.php";
         <div id="timeSlots">
             <?php include '../includes/waktuPemesanan.php' ?>
         </div>
-        <?php include '../includes/navbarBawah.php' ?><br>
     </div>
     <?php include '../includes/footer.php' ?>
     </div>

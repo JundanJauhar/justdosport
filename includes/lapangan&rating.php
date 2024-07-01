@@ -2,10 +2,13 @@
 include '../server/koneksi.php';
 
 // Assuming you have the Pemandu's ID from the URL parameter
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if (isset($_GET['id_tempatFutsal'])) {
+    $id_tempatFutsal = $_GET['id_tempatFutsal'];
 
-    $query = "SELECT * FROM lapangan WHERE id = $id;";
+    // Assuming there is a common field between tempatfutsal and image_futsal like id_tempatFutsal
+    $query = "SELECT * FROM tempatfutsal JOIN image_futsal ON tempatfutsal.id_tempatFutsal = image_futsal.id_tempatFutsal
+              WHERE tempatfutsal.id_tempatFutsal = $id_tempatFutsal";
+
     $sql = mysqli_query($koneksi, $query);
 
     // Check if the query is successful
@@ -17,10 +20,11 @@ if (isset($_GET['id'])) {
     }
 } else {
     // Handle the case where the Pemandu ID is not provided
-    echo "Pemandu ID is not specified.";
+    echo "ID is not specified.";
     exit();
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -137,7 +141,7 @@ if (isset($_GET['id'])) {
 <body class="bg-gray-100">
     <div class="carousel-container">
         <div class="carousel">
-            <img src="<?php echo $row['gambar']; ?>" alt="Image 1">
+            <img src="<?php echo $row['image']; ?>" alt="Image 1">
         </div>
         <div class="carousel-nav">
             <button id="prevBtn">&lt;</button>
@@ -153,14 +157,14 @@ if (isset($_GET['id'])) {
 
     <section>
         <div class="p-4 mt-6 w-[100%]">
-            <h1 class="text-3xl font-semibold text-gray-900"><?php echo $row['namaLapangan']; ?></h1>
+            <h1 class="text-3xl font-semibold text-gray-900"><?php echo $row['nama']; ?></h1>
             <h3 class="text-xl font-medium text-gray-700"><?php echo $row['alamat']; ?></h3>
             <div class="border-solid border-gray-300 border-2 rounded-md p-5 mt-4 w-full">
                 <p>
                     <strong class="text-lg font-medium text-gray-800">Fasilitas:</strong>
                 </p>
                 <ul class="list-disc list-inside mt-2">
-                    <li class=" text-justify w-full"><?php echo $row['ketlapangan'] ?></li>
+                    <li class=" text-justify w-full"><?php echo $row['deskripsi'] ?></li>
                 </ul>
             </div>
         </div>

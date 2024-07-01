@@ -207,7 +207,7 @@
         <!-- card Lapangan Futsal-->
         <?php
         include '../server/koneksi.php';
-        $query = "SELECT * FROM lapangan;";
+        $query = "SELECT * FROM tempatfutsal,image_futsal WHERE tempatfutsal.id_tempatFutsal = image_futsal.id_imageFutsal;";
         $sql = mysqli_query($koneksi, $query);
         $no = 0;
         ?>
@@ -215,10 +215,10 @@
         <div class="flex w-full">
             <div class="grid grid-cols-3 mx-auto gap-6 p-4 ">
                 <?php while ($result = mysqli_fetch_assoc($sql)): ?>
-                    <a href="halamanKetersediaan.php?id=<?php echo $result['id']; ?>"
+                    <a href="halamanKetersediaan.php?id_tempatFutsal=<?php echo $result['id_tempatFutsal']; ?>"
                         class="w-96 rounded-sm shadow-md p-4 block bg-gradient-to-r from-green-500 to-gray-900    ">
-                        <img src="<?php echo $result['gambar']; ?>" alt="" class='w-full h-80' id="imgCard-1">
-                        <h4 class='text-2xl font-semibold mt-2'><?php echo $result['namaLapangan']; ?></h4>
+                        <img src="<?php echo $result['image']; ?>" alt="" class='w-full h-80' id="imgCard-1">
+                        <h4 class='text-2xl font-semibold mt-2'><?php echo $result['nama']; ?></h4>
                         <h4 class='text-lg font-semibold'>Rp. <?php echo number_format($result['harga'], 0, ',', '.'); ?>
                         </h4>
                         <p><?php echo $result['alamat']; ?></p>
@@ -226,25 +226,25 @@
                             <div class="grid">
                                 <div class="flex w-full gap-2">
                                     <img src="../../../justdosport/assets/lapangan.png" alt="" class=' w-6 h-6'>
-                                    <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[0]; ?></span>
+                                    <span class=" text-sm"><?php echo $result['lapangan']; ?></span>
                                 </div>
                             </div>
                             <div class="grid">
                                 <div class="flex w-full gap-2">
                                     <img src="../../../justdosport/assets/wc.png" alt="" class=' w-6 h-6'>
-                                    <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[1]; ?></span>
+                                    <span class=" text-sm"><?php echo $result['kamar_mandi']; ?></span>
                                 </div>
                             </div>
                             <div class="grid">
                                 <div class="flex w-full gap-2">
                                     <img src="../../../justdosport/assets/musholla.png" alt="" class=' w-6 h-6'>
-                                    <span class=" text-sm"><?php echo json_decode($result['fasilitas'])[2]; ?></span>
+                                    <span class=" text-sm"><?php echo $result['musholla']; ?></span>
                                 </div>
                             </div>
                         </div>
                         <div class="grid mt-2">
                             <img src="../../../justdosport/assets/circum_parking-1.png" alt="" class='w-6 h-6'>
-                            <p class='text-sm'><?php echo json_decode($result['fasilitas'])[3]; ?></p>
+                            <p class='text-sm'><?php echo $result['parkir']; ?></p>
                         </div>
 
                     </a>
