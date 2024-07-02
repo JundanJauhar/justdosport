@@ -1,4 +1,3 @@
-// Previous page (booking page)
 <?php
 include '../server/koneksi.php';
 
@@ -95,12 +94,15 @@ if (isset($_GET['id_tempatFutsal'])) {
                     <div class="md:w-1/2 justify-center">
                         <form id="bookingForm" action="halamanPembayaran.php" method="POST">
                             <input type="hidden" name="selected_price" id="selected_price" value="0">
-                            <div class="border-2 border-solid p-4 grid md:grid-cols-4 gap-5 w-full rounded-lg shadow-sm all-seats">
+                            <div
+                                class="border-2 border-solid p-4 grid md:grid-cols-4 gap-5 w-full rounded-lg shadow-sm all-seats">
                                 <?php foreach ($lapangan['pemesanan'] as $pemesanan): ?>
-                                    <button type="button" class="price-button" data-harga="<?php echo $pemesanan['harga']; ?>">
+                                    <button type="button" class="price-button" data-harga="<?php echo $pemesanan['harga']; ?>"
+                                        id="btnWaktu" >
                                         <div class="border-2 border-black border-solid text-center rounded-xl p-2 h-[50px]">
                                             <h3 class="font-bold text-[12px] text-black"><?php echo $pemesanan["jam"]; ?></h3>
-                                            <h3 class="text-[10px] text-black opacity-75">Rp <?php echo $pemesanan["harga"]; ?></h3>
+                                            <h3 class="text-[10px] text-black opacity-75">Rp <?php echo $pemesanan["harga"]; ?>
+                                            </h3>
                                         </div>
                                     </button>
                                 <?php endforeach; ?>
@@ -120,34 +122,51 @@ if (isset($_GET['id_tempatFutsal'])) {
             </button>
         </div>
     </div>
-
+    <script src="waktuPemesanan.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Ambil semua elemen tombol harga
-        const priceButtons = document.querySelectorAll('.price-button');
+           document.addEventListener('DOMContentLoaded', function() {
+    // Select all buttons with the class price-button
+    const priceButtons = document.querySelectorAll('.price-button');
+    const totalPriceDisplay = document.querySelector('.total-price-display');
+    const selectedPriceInput = document.getElementById('selected_price');
 
-        // Ambil elemen untuk menampilkan total harga
-        const totalPriceDisplay = document.querySelector('.total-price-display');
+    // Store the original background colors
+    const originalBgColor = [];
 
-        // Inisialisasi total harga
-        let totalPrice = 0;
+    // Initialize total price
+    let totalPrice = 0;
 
-        // Tambahkan event listener untuk setiap tombol harga
-        priceButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                // Ambil harga dari atribut data-harga
-                const harga = parseInt(button.getAttribute('data-harga'));
+    // Store the currently selected button
+    let selectedButton = null;
 
-                // Update nilai total harga
-                totalPrice = harga;
+    // Add event listener for each price button
+    priceButtons.forEach((button, index) => {
+        originalBgColor[index] = button.style.backgroundColor || 'transparent';
 
-                // Tampilkan total harga yang baru
-                totalPriceDisplay.textContent = 'Rp ' + totalPrice.toLocaleString();
+        button.addEventListener('click', function() {
+            // Reset the background color of the previously selected button
+            if (selectedButton) {
+                selectedButton.style.backgroundColor = originalBgColor[Array.from(priceButtons).indexOf(selectedButton)];
+            }
 
-                // Set value of hidden input to selected price
-                document.getElementById('selected_price').value = totalPrice;
-            });
+            // Set the background color of the clicked button to green
+            button.style.backgroundColor = 'green';
+
+            // Update the currently selected button
+            selectedButton = button;
+
+            // Update the total price and display it
+            const harga = parseInt(button.getAttribute('data-harga'));
+            totalPrice = harga;
+            totalPriceDisplay.textContent = 'Rp ' + totalPrice.toLocaleString();
+
+            // Update the hidden input value
+            selectedPriceInput.value = totalPrice;
         });
+    });
+});
+
     </script>
 </body>
 

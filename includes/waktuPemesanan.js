@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Select all buttons with class btnWaktu
-    const waktuButtons = document.querySelectorAll('btnWaktu');
+    // Select all buttons with class price-button
+    const waktuButtons = document.querySelectorAll('.price-button');
 
     // Add click event listener to each button
     waktuButtons.forEach(button => {
@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
 
 
 
