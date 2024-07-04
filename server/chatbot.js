@@ -6,7 +6,7 @@ const mysql = require("mysql2");
 const Groq = require("groq-sdk");
 
 const app = express();
-const port = 3001;
+const port = 3060;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -64,26 +64,33 @@ app.post("/api/chatbot", async (req, res) => {
       console.log("Full message:", fullMessage);
 
       // Kirim pesan ke Groq untuk mendapatkan respons dari chatbot
-      const chatCompletion = await groq.chat.completions.create({
-        model: "llama3-8b-8192",
-        messages: [
-          {
-            role: "system",
-            content:
-              "Anda adalah asisten yang berbicara dalam bahasa Indonesia dan memberikan informasi tentang lapangan futsal di Just Do Sport.",
-          },
-          {
-            role: "user",
-            content: fullMessage,
-          },
-        ],
-      });
+      try {
+        const chatCompletion = await groq.chat.completions.create({
+          model: "llama3-8b-8192",
+          messages: [
+            {
+              role: "system",
+              content:
+                "Anda adalah asisten yang berbicara dalam bahasa Indonesia dan memberikan informasi tentang lapangan futsal di Just Do Sport.",
+            },
+            {
+              role: "user",
+              content: fullMessage,
+            },
+          ],
+        });
 
-      const botResponse =
-        chatCompletion.choices[0]?.message?.content ||
-        "Tidak ada respons dari model.";
+        const botResponse =
+          chatCompletion.choices[0]?.message?.content ||
+          "Tidak ada respons dari model.";
 
-      res.json({ reply: botResponse });
+        res.json({ reply: botResponse });
+      } catch (groqError) {
+        console.error("Error fetching response from Groq:", groqError);
+        res.status(500).json({
+          reply: "Maaf, terjadi kesalahan saat memproses permintaan Anda.",
+        });
+      }
     });
   } catch (error) {
     console.error("Error:", error);

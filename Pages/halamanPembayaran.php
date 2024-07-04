@@ -1,8 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
-include '../server/koneksi.php';
+include '../server/koneksi.php'; // Include your database connection file
+if (isset($_GET['id_tempatFutsal'])) {
+    $id_tempatFutsal = $_GET['id_tempatFutsal'];
+
+$query = "SELECT tempatfutsal.*, image_futsal.image 
+          FROM tempatfutsal
+          JOIN image_futsal ON tempatfutsal.id_tempatFutsal = image_futsal.id_imageFutsal";
+
+$sql = mysqli_query($koneksi, $query);
+if (!$sql) {
+    echo "Query Error: " . mysqli_error($koneksi);
+    $lapangan_id = $row['id_lapangan'];
+if (!isset($rows[$lapangan_id])) {
+    $rows[$lapangan_id] = array(
+        'id_lapangan' => $row['id_lapangan'],
+        'nama_lapangan' => $row['nama_lapangan'],
+    );
+}
+} else {
+    // Fetch the result as an associative array
+    $result = mysqli_fetch_assoc($sql);
+}
+}
+
+
+
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_price'])) {
@@ -38,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_price'])) {
                     <img src="..\assets\images (2).jpeg" class=" size-36 w-[300px] h-[155px] drop-shadow-md" alt="">
                 </div>
                 <div class=" ml-16">
-                    <h1 class="text-2xl font-serif ">JAKAL KM 7 FUTSAL</h1>
-                    <h3 class=" font-thin">Sleman, Yogyakarta</h3>
+                <h1 class="text-2xl font-serif"><?php echo isset($result['nama']) ; ?></h1>
+                <h3 class=" font-thin">Sleman, Yogyakarta</h3>
                 </div>
 
             </div>
@@ -177,30 +199,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_price'])) {
                 </div>
             </div>
             <div class="mt-5 h-full">
-                <label for="">JAKAL KM 7 Futsal</label>
-                <h3 class=" text-green-800">Minggu, 10 Maret 2024 ( 15.00 - 16.00 )</h3>
-                <div class=" justify-between flex py-5">
-                    <h3>Harga Lapangan</h3>
-                    <div class="pt-2 pr-5 ext-[25px]">Rp <?php echo number_format($selectedAmount, 0, ',', '.'); ?></div>
+                    <label for="">JAKAL KM 7 Futsal</label>
+                    <h3 class=" text-green-800">Minggu, 10 Maret 2024 ( 15.00 - 16.00 )</h3>
+                    <div class=" justify-between flex py-5">
+                        <h3>Harga Lapangan</h3>
+                        <div class="pt-2 pr-5 ext-[25px]">Rp <?php echo number_format($selectedAmount, 0, ',', '.'); ?></div>
+                    </div>
+                    <div class="garis border-solid border-t-2 flex justify-between py-5">
+                        <h3>Service Fee</h3>
+                        <h3>Rp5.000</h3>
+                    </div>
+                    <div class="border-solid border-t-2 pt-5">
+                        <h3>Total bayar</h3>
+                    </div>
+                    <div class="total bayar justify-between flex py-5 text-red-600">
+                        <h3>Bayar Penuh</h3>
+                        <h3>Rp <?php echo number_format($selectedAmount + 5000, 0, ',', '.'); ?></h3>
+                    </div>
                 </div>
-                <div class="garis border-solid border-t-2 flex justify-between py-5">
-                    <h3>Service Fee</h3>
-                    <h3>Rp5.000</h3>
-                </div>
-                <div class="border-solid border-t-2 pt-5">
+                <div class="Selesaikan Pembayaran items-center text-center ">
+                    <a href="hasilPembayaran.php">
 
-                    <h3>Total bayar</h3>
-                </div>
-                <div class="total bayar justify-between flex py-5 text-red-600">
-                    <h3>Bayar Penuh</h3>
-                    <h3>Rp <?php echo number_format($selectedAmount + 5000, 0, ',', '.'); ?></h3>
-                </div>
-            </div>
-            <div class="Selesaikan Pembayaran items-center text-center ">
-            <a href="hasilPembayaran.php">
-                
-                <button class="w-[350px] h-[50px] bg-orange-600 text-center text-white font-bold py-3">SelesaikanPembayaran</button>
-            </a>
+                        <button type="submit" class="w-[350px] h-[50px] bg-orange-600 text-center text-white font-bold py-3">Selesaikan Pembayaran</button>
+                    </a>
+                    </div>
+                <input type="hidden" name="harga" value="<?php echo $selectedAmount + 5000; ?>">
+                <input type="hidden" name="id_tempatFutsal" value="<?php echo $id_tempatFutsal; ?>">
+                <input type="hidden" name="tanggal" value="2024-03-10">
+                <input type="hidden" name="jam_mulai" value="15:00">
+                <input type="hidden" name="jam_selesai" value="16:00">
             </div>
         </div>
         

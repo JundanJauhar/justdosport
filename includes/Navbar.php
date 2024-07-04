@@ -41,21 +41,25 @@
 <body>
     <nav class="bg-none fixed w-full z-20 dark:border-gray-600" id='navbar'>
         <div class=" flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="../Pages/LandingPage.php" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="../assets/logo.png" class="h-10 w-10" alt="Logo" />
                 <span class="text-white self-center text-xl font-semibold whitespace-nowrap dark:text-white">Just do
                     Sport
                 </span>
             </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button type="button" id='regist-button'
+            <a href="../login/registrasi.php">
+            <button type="button" 
                     class="mr-2 text-white focus:ring-4 focus:outline-none  font-medium rounded-sm text-sm px-4 py-2 text-center ">
                     Daftar
                 </button>
-                <button type="button" id='login-button'
+            </a> 
+                <a href="../login/login2.php">
+                <button type="button" 
                     class="text-gray-700 bg-white focus:ring-4 focus:outline-none font-medium rounded-sm text-sm px-4 py-2 text-center ">
                     Masuk
                 </button>
+                </a>
                 <div class="modal" id='login-modal'>
                     <form class="max-w-sm mx-auto rounded-md mt-28 p-4" id='formModal'>
                         <div class="mb-5">
