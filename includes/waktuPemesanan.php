@@ -98,7 +98,7 @@ if (isset($_GET['id_tempatFutsal'])) {
                                 class="border-2 border-solid p-4 grid md:grid-cols-4 gap-5 w-full rounded-lg shadow-sm all-seats">
                                 <?php foreach ($lapangan['pemesanan'] as $pemesanan): ?>
                                     <button type="button" class="price-button" data-harga="<?php echo $pemesanan['harga']; ?>"
-                                        id="btnWaktu" >
+                                        id="btnWaktu">
                                         <div class="border-2 border-black border-solid text-center rounded-xl p-2 h-[50px]">
                                             <h3 class="font-bold text-[12px] text-black"><?php echo $pemesanan["jam"]; ?></h3>
                                             <h3 class="text-[10px] text-black opacity-75">Rp <?php echo $pemesanan["harga"]; ?>
@@ -125,47 +125,47 @@ if (isset($_GET['id_tempatFutsal'])) {
     <script src="waktuPemesanan.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-           document.addEventListener('DOMContentLoaded', function() {
-    // Select all buttons with the class price-button
-    const priceButtons = document.querySelectorAll('.price-button');
-    const totalPriceDisplay = document.querySelector('.total-price-display');
-    const selectedPriceInput = document.getElementById('selected_price');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all buttons with the class price-button
+            const priceButtons = document.querySelectorAll('.price-button');
+            const totalPriceDisplay = document.querySelector('.total-price-display');
+            const selectedPriceInput = document.getElementById('selected_price');
 
-    // Store the original background colors
-    const originalBgColor = [];
+            // Store the original background colors
+            const originalBgColor = [];
 
-    // Initialize total price
-    let totalPrice = 0;
+            // Initialize total price
+            let totalPrice = 0;
 
-    // Store the currently selected button
-    let selectedButton = null;
+            // Store the currently selected button
+            let selectedButton = null;
 
-    // Add event listener for each price button
-    priceButtons.forEach((button, index) => {
-        originalBgColor[index] = button.style.backgroundColor || 'transparent';
+            // Add event listener for each price button
+            priceButtons.forEach((button, index) => {
+                originalBgColor[index] = button.style.backgroundColor || 'transparent';
 
-        button.addEventListener('click', function() {
-            // Reset the background color of the previously selected button
-            if (selectedButton) {
-                selectedButton.style.backgroundColor = originalBgColor[Array.from(priceButtons).indexOf(selectedButton)];
-            }
+                button.addEventListener('click', function () {
+                    // Reset the background color of the previously selected button
+                    if (selectedButton) {
+                        selectedButton.style.backgroundColor = originalBgColor[Array.from(priceButtons).indexOf(selectedButton)];
+                    }
 
-            // Set the background color of the clicked button to green
-            button.style.backgroundColor = 'green';
+                    // Set the background color of the clicked button to green
+                    button.style.backgroundColor = 'green';
 
-            // Update the currently selected button
-            selectedButton = button;
+                    // Update the currently selected button
+                    selectedButton = button;
 
-            // Update the total price and display it
-            const harga = parseInt(button.getAttribute('data-harga'));
-            totalPrice = harga;
-            totalPriceDisplay.textContent = 'Rp ' + totalPrice.toLocaleString();
+                    // Update the total price and display it
+                    const harga = parseInt(button.getAttribute('data-harga'));
+                    totalPrice = harga;
+                    totalPriceDisplay.textContent = 'Rp ' + totalPrice.toLocaleString();
 
-            // Update the hidden input value
-            selectedPriceInput.value = totalPrice;
+                    // Update the hidden input value
+                    selectedPriceInput.value = totalPrice;
+                });
+            });
         });
-    });
-});
 
     </script>
 </body>

@@ -5,7 +5,7 @@
           <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $_SESSION['nama'].' | '.$_SESSION['level'];?> </a>
+          <a href="../../login2.php" class="d-block"> BACK</a>
         </div>
       </div>
 

@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
-include '../server/koneksi.php';
+include '../server/koneksi.php'; // Sertakan file koneksi database Anda
+
 session_start();
+
+// Ambil data dari form
+$selected_price = isset($_POST['selected_price']) ? $_POST['selected_price'] : 0;
+$id_tempatFutsal = isset($_POST['id_tempatFutsal']) ? $_POST['id_tempatFutsal'] : 0;
+$tanggal = isset($_POST['tanggal']) ? $_POST['tanggal'] : '';
+$jam = isset($_POST['jam']) ? $_POST['jam'] : '';
+
+// Siapkan dan jalankan query untuk memasukkan data
+$stmt = $koneksi->prepare("INSERT INTO pemesanan (tanggal, jam, harga, id_tempatFutsal) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssii", $tanggal, $jam_mulai, $selected_price, $id_tempatFutsal);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_price'])) {
     $selectedAmount = $_POST['selected_price'];
@@ -11,6 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_price'])) {
 } else {
     $selectedAmount = isset($_SESSION['selectedAmount']) ? $_SESSION['selectedAmount'] : 0;
 }
+
+if ($stmt->execute()) {
+    echo "Pemesanan berhasil!";
+} else {
+    echo "Error: " . $stmt->error;
+}
+
+$stmt->close();
+$koneksi->close();
 ?>
 
 <head>

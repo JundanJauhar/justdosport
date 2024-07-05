@@ -27,8 +27,9 @@ if (isset($_POST["register"])) {
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
-  <div class="card card-outline card-primary">
+  <div class="login-box">
+    <div class="card card-outline card-primary">
+    
     <div class="card-header text-center">
       <a href="#" class="h1"><b>Just</b>do<b>Sport</b></a>
     </div>
@@ -93,6 +94,11 @@ if (isset($_POST["register"])) {
       <p class="mb-0">
         <a href="login2.php" class="text-center">Already have an account? Login here</a>
       </p>
+      <div>
+         <button>
+             <a href="../Pages/LandingPage.php">back</a>
+         </button>
+     </div>
     </div>
   </div>
 </div>

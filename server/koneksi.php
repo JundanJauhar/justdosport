@@ -15,6 +15,14 @@ if ($koneksi->connect_error) {
 
 } 
 
+return [
+    'DB_HOST' => 'localhost',
+    'DB_DATABASE' => 'nama_database',
+    'DB_USERNAME' => 'username_database',
+    'DB_PASSWORD' => 'password_database'
+];
+
+
 // Mengatur karakter set
 $koneksi->set_charset("utf8");
 

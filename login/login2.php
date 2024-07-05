@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="app/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
+
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
@@ -74,6 +75,11 @@
       <p class="mb-0">
         <a href="registrasi.php" class="text-center">Register a new membership</a>
       </p>
+      <div>
+        <button>
+            <a href="../Pages/LandingPage.php">back</a>
+        </button>
+    </div>
     </div>
     <!-- /.card-body -->
   </div>
