@@ -1,14 +1,14 @@
 <?php
-require 'config.php';
+require '../../server/koneksi.php';
 
 function registrasi($data) {
-    global $conn;
+    global $koneksi;
 
     $email = strtolower(stripslashes($data["email"]));
     $nama = strtolower(stripslashes($data["username"]));
-    $password = mysqli_real_escape_string($conn, $data["password"]);
-    $password2 = mysqli_real_escape_string($conn, $data["konfirmasi_password"]);
-    $alamat = mysqli_real_escape_string($conn, $data["alamat"]);
+    $password = mysqli_real_escape_string($koneksi, $data["password"]);
+    $password2 = mysqli_real_escape_string($koneksi, $data["konfirmasi_password"]);
+    $alamat = mysqli_real_escape_string($koneksi, $data["alamat"]);
 
     // Cek konfirmasi password
     if ($password !== $password2) {
@@ -22,9 +22,9 @@ function registrasi($data) {
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     // Masukkan data ke database
-    $query = "INSERT INTO pengguna (email, nama, password, alamat) VALUES ('$email', '$nama', '$password', '$alamat')";
-    mysqli_query($conn, $query);
+    $query = "INSERT INTO pengguna (email, nama, password, alamat) VALUES ('$email', '$nama', '$password', '$alamat')";u
+    mysqli_query($koneksi, $query);
 
-    return mysqli_affected_rows($conn);
+    return mysqli_affected_rows($koneksi);
 }
 ?>
