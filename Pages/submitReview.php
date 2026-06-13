@@ -100,7 +100,7 @@ function analyzeSentimentAI($text, $rating) {
                         'messages' => [
                             [
                                 'role'    => 'system',
-                                'content' => 'Kamu adalah AI asisten untuk analisis sentimen ulasan penyewaan lapangan futsal di Indonesia. Analisis komentar dan rating dari pengguna, lalu tentukan sentimen mereka. Balas HANYA dengan satu kata persis: "Positif", "Negatif", atau "Netral" (tanpa tanda kutip, tanpa penjelasan, tanpa kata lain).'
+                                'content' => 'Kamu adalah AI asisten untuk analisis sentimen ulasan penyewaan arena olahraga (seperti futsal, badminton, sepak bola, tenis) di Indonesia. Analisis komentar dan rating dari pengguna, lalu tentukan sentimen mereka. Balas HANYA dengan satu kata persis: "Positif", "Negatif", atau "Netral" (tanpa tanda kutip, tanpa penjelasan, tanpa kata lain).'
                             ],
                             [
                                 'role'    => 'user',

@@ -19,7 +19,8 @@ if ($id > 0) {
             'nama' => $lap['namaLapangan'],
             'alamat' => $lap['alamat'],
             'deskripsi' => $lap['ketlapangan'],
-            'image' => $lap['gambar']
+            'image' => $lap['gambar'],
+            'cabor' => $lap['cabor'] ?? 'Futsal'
         ];
     } else {
         echo "Lapangan tidak ditemukan.";
@@ -163,7 +164,12 @@ if ($id > 0) {
 
     <section>
         <div class="p-4 mt-6 w-[100%]">
-            <h1 class="text-3xl font-semibold text-gray-900"><?php echo $row['nama']; ?></h1>
+            <h1 class="text-3xl font-semibold text-gray-900 flex items-center gap-3">
+                <span><?php echo $row['nama']; ?></span>
+                <span class="text-xs uppercase bg-green-100 text-green-800 px-3 py-1 rounded-full font-bold">
+                    <?php echo htmlspecialchars($row['cabor']); ?>
+                </span>
+            </h1>
             <h3 class="text-xl font-medium text-gray-700"><?php echo $row['alamat']; ?></h3>
             <div class="border-solid border-gray-300 border-2 rounded-md p-5 mt-4 w-full">
                 <p>

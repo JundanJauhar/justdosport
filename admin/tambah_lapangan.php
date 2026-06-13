@@ -36,7 +36,17 @@ if (!isset($_SESSION['nama']) || !isset($_SESSION['role']) || $_SESSION['role'] 
                 <input type="hidden" name="action" value="tambah">
 
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2">Nama Lapangan*</label>
+                    <label class="block text-gray-700 font-bold mb-2">Cabang Olahraga*</label>
+                    <select name="cabor" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        <option value="Futsal">Futsal</option>
+                        <option value="Badminton">Badminton</option>
+                        <option value="Sepak Bola">Sepak Bola</option>
+                        <option value="Tenis">Tenis</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 font-bold mb-2">Nama Arena / Lapangan*</label>
                     <input type="text" name="namaLapangan" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
                 </div>
 
@@ -82,7 +92,7 @@ if (!isset($_SESSION['nama']) || !isset($_SESSION['role']) || $_SESSION['role'] 
             </form>
 
             <div class="mt-8 p-4 bg-blue-50 border-l-4 border-blue-500">
-                <p class="text-blue-700"><strong>Tips:</strong> Gunakan gambar dengan ukuran minimal 800x600px untuk hasil terbaik. Anda bisa mencari gambar futsal gratis di Unsplash atau Pexels.</p>
+                <p class="text-blue-700"><strong>Tips:</strong> Gunakan gambar dengan ukuran minimal 800x600px untuk hasil terbaik. Anda bisa mencari gambar olahraga gratis di Unsplash atau Pexels.</p>
             </div>
         </div>
     </div>

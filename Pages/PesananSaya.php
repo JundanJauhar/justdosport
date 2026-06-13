@@ -54,7 +54,7 @@ $result = mysqli_query($koneksi, $query);
         
         <div class="text-center mb-8">
             <h1 class="text-4xl font-extrabold text-white tracking-tight">Riwayat Pemesanan Saya</h1>
-            <p class="text-green-400 mt-2">Daftar booking lapangan futsal yang telah Anda lakukan</p>
+            <p class="text-green-400 mt-2">Daftar booking arena olahraga yang telah Anda lakukan</p>
         </div>
 
         <?php if (isset($_GET['success'])): ?>
@@ -68,8 +68,8 @@ $result = mysqli_query($koneksi, $query);
             <div class="bg-white text-gray-800 rounded-3xl p-12 text-center shadow-2xl max-w-md mx-auto">
                 <div class="text-gray-300 text-6xl mb-4"><i class="fas fa-calendar-times"></i></div>
                 <h3 class="text-xl font-bold mb-2">Belum Ada Pesanan</h3>
-                <p class="text-gray-500 mb-6 text-sm">Anda belum melakukan pemesanan lapangan apapun saat ini.</p>
-                <a href="LandingPage.php" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl transition shadow">Cari Lapangan Sekarang</a>
+                <p class="text-gray-500 mb-6 text-sm">Anda belum melakukan pemesanan arena olahraga apapun saat ini.</p>
+                <a href="LandingPage.php" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl transition shadow">Cari Arena Sekarang</a>
             </div>
         <?php else: ?>
             <div class="space-y-6">
@@ -163,7 +163,7 @@ $result = mysqli_query($koneksi, $query);
                 <i class="fas fa-times"></i>
             </button>
             
-            <h3 class="text-2xl font-bold mb-1 text-gray-950">Beri Ulasan Lapangan</h3>
+            <h3 class="text-2xl font-bold mb-1 text-gray-950">Beri Ulasan Arena</h3>
             <p id="modalCourtName" class="text-sm text-green-600 font-bold mb-6">Jakal 7 Futsal</p>
             
             <form action="submitReview.php" method="POST" class="space-y-4">
@@ -185,7 +185,7 @@ $result = mysqli_query($koneksi, $query);
                 <!-- Comment input -->
                 <div>
                     <label for="komentar" class="block text-sm font-semibold text-gray-600 mb-1">Komentar / Ulasan Anda*</label>
-                    <textarea id="komentar" name="komentar" rows="4" required placeholder="Tulis ulasan Anda terhadap kualitas lapangan..."
+                    <textarea id="komentar" name="komentar" rows="4" required placeholder="Tulis ulasan Anda terhadap kualitas arena..."
                         class="w-full px-4 py-3 bg-gray-50 border border-gray-300 text-gray-900 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none resize-none"></textarea>
                 </div>
 

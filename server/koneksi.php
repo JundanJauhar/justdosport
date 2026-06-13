@@ -2,7 +2,7 @@
 
 $host = "localhost"; // Host database
 $username = "root"; // Username database
-$password = ""; // Password database
+$password = "password123"; // Password database
 $database = "justdosport"; // Nama database
 
 // Membuat koneksi ke database
@@ -83,6 +83,12 @@ if ($res_role && $res_role->num_rows == 0) {
 $res_pemilik = $koneksi->query("SHOW COLUMNS FROM `lapangan` LIKE 'id_pemilik'");
 if ($res_pemilik && $res_pemilik->num_rows == 0) {
     $koneksi->query("ALTER TABLE `lapangan` ADD COLUMN `id_pemilik` INT(11) DEFAULT NULL");
+}
+
+// Check if 'cabor' column exists in 'lapangan'
+$res_cabor = $koneksi->query("SHOW COLUMNS FROM `lapangan` LIKE 'cabor'");
+if ($res_cabor && $res_cabor->num_rows == 0) {
+    $koneksi->query("ALTER TABLE `lapangan` ADD COLUMN `cabor` VARCHAR(50) DEFAULT 'Futsal'");
 }
 
 global $conn;

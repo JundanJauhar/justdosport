@@ -201,8 +201,8 @@ $total_reviews = $pos_count + $neg_count + $net_count;
                     <div>
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                             <div>
-                                <h2 class="text-2xl font-bold text-gray-900">Daftar Lapangan Futsal Anda</h2>
-                                <p class="text-sm text-gray-500">Unggah dan kelola lapangan futsal yang Anda sewakan</p>
+                                <h2 class="text-2xl font-bold text-gray-900">Daftar Arena Olahraga Anda</h2>
+                                <p class="text-sm text-gray-500">Unggah dan kelola arena olahraga (futsal, badminton, tenis, sepak bola) yang Anda sewakan</p>
                             </div>
                             <a href="tambah_lapangan.php" class="bg-green-600 text-white px-5 py-3 rounded-xl hover:bg-green-700 transition flex items-center gap-2 font-bold shadow-md shadow-green-100">
                                 <i class="fas fa-plus"></i>
@@ -213,8 +213,8 @@ $total_reviews = $pos_count + $neg_count + $net_count;
                         <?php if (mysqli_num_rows($result_lapangan) === 0): ?>
                             <div class="text-center py-12 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
                                 <div class="text-gray-300 text-5xl mb-3"><i class="fas fa-futbol"></i></div>
-                                <h4 class="text-lg font-bold text-gray-700">Belum Ada Lapangan</h4>
-                                <p class="text-sm text-gray-400 mt-1">Silakan tambahkan lapangan pertama Anda dengan menekan tombol di atas.</p>
+                                <h4 class="text-lg font-bold text-gray-700">Belum Ada Arena</h4>
+                                <p class="text-sm text-gray-400 mt-1">Silakan tambahkan arena pertama Anda dengan menekan tombol di atas.</p>
                             </div>
                         <?php else: ?>
                             <div class="overflow-x-auto rounded-2xl border border-gray-200">
@@ -223,7 +223,8 @@ $total_reviews = $pos_count + $neg_count + $net_count;
                                         <tr class="bg-gray-100 border-b border-gray-200 text-gray-700 text-xs font-bold uppercase tracking-wider">
                                             <th class="p-4 w-16 text-center">No</th>
                                             <th class="p-4">Gambar</th>
-                                            <th class="p-4">Nama Lapangan</th>
+                                            <th class="p-4">Nama Arena</th>
+                                            <th class="p-4">Cabang Olahraga</th>
                                             <th class="p-4">Harga Sewa</th>
                                             <th class="p-4">Alamat</th>
                                             <th class="p-4">Kontak Lapangan</th>
@@ -241,6 +242,11 @@ $total_reviews = $pos_count + $neg_count + $net_count;
                                                     <img src="<?php echo $row['gambar']; ?>" alt="Preview" class="w-20 h-14 object-cover rounded-lg shadow-sm border border-gray-100">
                                                 </td>
                                                 <td class="p-4 font-bold text-gray-900"><?php echo htmlspecialchars($row['namaLapangan']); ?></td>
+                                                <td class="p-4">
+                                                    <span class="text-xs uppercase bg-green-100 text-green-800 px-2 py-1 rounded-full font-bold">
+                                                        <?php echo htmlspecialchars($row['cabor'] ?? 'Futsal'); ?>
+                                                     </span>
+                                                </td>
                                                 <td class="p-4 font-semibold text-green-600">Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?>/jam</td>
                                                 <td class="p-4 max-w-xs truncate"><?php echo htmlspecialchars($row['alamat']); ?></td>
                                                 <td class="p-4 font-mono"><?php echo htmlspecialchars($row['kontakLapangan']); ?></td>
@@ -365,7 +371,7 @@ $total_reviews = $pos_count + $neg_count + $net_count;
                     <div>
                         <div class="mb-6">
                             <h2 class="text-2xl font-bold text-gray-900">Dashboard Analitik</h2>
-                            <p class="text-sm text-gray-500">Analisis perkembangan dan performa bisnis persewaan lapangan Anda</p>
+                            <p class="text-sm text-gray-500">Analisis perkembangan dan performa bisnis persewaan arena olahraga Anda</p>
                         </div>
 
                         <!-- Metric Cards -->
@@ -385,9 +391,9 @@ $total_reviews = $pos_count + $neg_count + $net_count;
                                 </div>
                             </div>
                             <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl border border-purple-200 shadow-sm flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-purple-600 text-white flex items-center justify-center text-xl shrink-0"><i class="fas fa-futbol"></i></div>
+                                <div class="w-12 h-12 rounded-xl bg-purple-600 text-white flex items-center justify-center text-xl shrink-0"><i class="fas fa-running"></i></div>
                                 <div>
-                                    <span class="text-xs font-semibold text-purple-700 uppercase tracking-wider block">Lapangan Aktif</span>
+                                    <span class="text-xs font-semibold text-purple-700 uppercase tracking-wider block">Arena Aktif</span>
                                     <strong class="text-xl text-gray-900"><?php echo $total_fields; ?> Unit</strong>
                                 </div>
                             </div>

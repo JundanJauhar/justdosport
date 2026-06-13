@@ -20,9 +20,10 @@ if ($action === 'tambah') {
     $kontakLapangan = mysqli_real_escape_string($koneksi, $_POST['kontakLapangan']);
     $gambar = mysqli_real_escape_string($koneksi, $_POST['gambar']);
     $ketlapangan = mysqli_real_escape_string($koneksi, $_POST['ketlapangan']);
+    $cabor = mysqli_real_escape_string($koneksi, $_POST['cabor'] ?? 'Futsal');
 
-    $query = "INSERT INTO lapangan (namaLapangan, harga, alamat, fasilitas, kontakLapangan, gambar, ketlapangan, id_pemilik) 
-              VALUES ('$namaLapangan', '$harga', '$alamat', '$fasilitas', '$kontakLapangan', '$gambar', '$ketlapangan', '$id_pemilik')";
+    $query = "INSERT INTO lapangan (namaLapangan, harga, alamat, fasilitas, kontakLapangan, gambar, ketlapangan, id_pemilik, cabor) 
+              VALUES ('$namaLapangan', '$harga', '$alamat', '$fasilitas', '$kontakLapangan', '$gambar', '$ketlapangan', '$id_pemilik', '$cabor')";
 
     if (mysqli_query($koneksi, $query)) {
         header('Location: index.php?success=Lapangan%20berhasil%20ditambahkan');
@@ -49,6 +50,7 @@ elseif ($action === 'edit') {
     $kontakLapangan = mysqli_real_escape_string($koneksi, $_POST['kontakLapangan']);
     $gambar = mysqli_real_escape_string($koneksi, $_POST['gambar']);
     $ketlapangan = mysqli_real_escape_string($koneksi, $_POST['ketlapangan']);
+    $cabor = mysqli_real_escape_string($koneksi, $_POST['cabor'] ?? 'Futsal');
 
     $query = "UPDATE lapangan SET 
               namaLapangan = '$namaLapangan',
@@ -57,7 +59,8 @@ elseif ($action === 'edit') {
               fasilitas = '$fasilitas',
               kontakLapangan = '$kontakLapangan',
               gambar = '$gambar',
-              ketlapangan = '$ketlapangan'
+              ketlapangan = '$ketlapangan',
+              cabor = '$cabor'
               WHERE id = '$id'";
 
     if (mysqli_query($koneksi, $query)) {

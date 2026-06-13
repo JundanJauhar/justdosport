@@ -195,7 +195,7 @@ $is_qris = in_array($order['metode_pembayaran'], ['QRIS', 'DANA', 'GoPay', 'OVO'
                                             <span><?php echo htmlspecialchars($order['metode_pembayaran']); ?></span>
                                         </div>
                                         <div class="text-lg font-extrabold text-gray-800">
-                                            Just Do Sport Futsal
+                                            Just Do Sport
                                         </div>
                                     </div>
 

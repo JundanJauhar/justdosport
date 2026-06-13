@@ -53,7 +53,17 @@ if (!$lapangan) {
                 <input type="hidden" name="id" value="<?php echo $lapangan['id']; ?>">
 
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2">Nama Lapangan*</label>
+                    <label class="block text-gray-700 font-bold mb-2">Cabang Olahraga*</label>
+                    <select name="cabor" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        <option value="Futsal" <?php echo ($lapangan['cabor'] ?? 'Futsal') === 'Futsal' ? 'selected' : ''; ?>>Futsal</option>
+                        <option value="Badminton" <?php echo ($lapangan['cabor'] ?? '') === 'Badminton' ? 'selected' : ''; ?>>Badminton</option>
+                        <option value="Sepak Bola" <?php echo ($lapangan['cabor'] ?? '') === 'Sepak Bola' ? 'selected' : ''; ?>>Sepak Bola</option>
+                        <option value="Tenis" <?php echo ($lapangan['cabor'] ?? '') === 'Tenis' ? 'selected' : ''; ?>>Tenis</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 font-bold mb-2">Nama Arena / Lapangan*</label>
                     <input type="text" name="namaLapangan" value="<?php echo $lapangan['namaLapangan']; ?>" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
                 </div>
 
